@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@700;800&display=swap');
+
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@layer utilities {
+  .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+  }
+  .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out forwards;
+}
+
+.animate-spin-slow {
+  animation: spinSlow 8s linear infinite;
+}
+
+body {
+    background: radial-gradient(at top left, #1A1B41 0%, #12121d 100%);
+    min-height: 100vh;
+    min-height: max(884px, 100dvh);
+    margin: 0;
+    padding: 0;
+}
+
+.glass-panel {
+    background: rgba(26, 27, 65, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.agent-orb-glow {
+    box-shadow: 0 0 40px rgba(74, 225, 131, 0.3);
+}
+
+/* Specific bar heights and animations match Stitch waveform */
+.waveform-bar {
+  border-radius: 9999px;
+  background-color: #4ae183;
+  box-shadow: 0 0 15px rgba(74, 225, 131, 0.6);
+}
