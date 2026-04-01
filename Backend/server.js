@@ -13,7 +13,11 @@ app.use(express.json());
 
 const server = http.createServer(app);
 const io = new Server(server, {
-  cors: { origin: '*' },
+  cors: { 
+    origin: '*',
+    methods: ["GET", "POST"],
+    credentials: true
+  },
   transports: ['polling', 'websocket'],
   allowEIO3: true
 });
