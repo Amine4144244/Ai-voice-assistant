@@ -13,7 +13,7 @@ export function VoiceChatContainer() {
     errorMsg, 
     sendAudioData, 
     interruptSession 
-  } = useVoiceSession('http://localhost:5000');
+  } = useVoiceSession(import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000');
 
   // Memoize the callback so the recorder hook doesn't re-create on every render
   const onAudioData = useCallback((audioBuffer) => {
