@@ -18,6 +18,11 @@ const io = new Server(server, {
   allowEIO3: true
 });
 
+// Vercel 404 Fix: Manually pass /socket.io requests to the Socket.io engine
+app.all('/socket.io*', (req, res) => {
+  io.engine.handleRequest(req, res);
+});
+
 // Basic MongoDB connection
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/ai-voice-assistant')
   .then(() => console.log('MongoDB Connected'))
