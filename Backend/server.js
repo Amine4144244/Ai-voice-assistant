@@ -23,7 +23,7 @@ const io = new Server(server, {
 });
 
 // Vercel 404 Fix: Manually pass /socket.io requests to the Socket.io engine
-app.all('/socket.io*', (req, res) => {
+app.all(/\/socket.io.*/, (req, res) => {
   io.engine.handleRequest(req, res);
 });
 
