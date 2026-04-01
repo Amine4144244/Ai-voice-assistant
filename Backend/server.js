@@ -13,18 +13,7 @@ app.use(express.json());
 
 const server = http.createServer(app);
 const io = new Server(server, {
-  cors: { 
-    origin: '*',
-    methods: ["GET", "POST"],
-    credentials: true
-  },
-  transports: ['polling', 'websocket'],
-  allowEIO3: true
-});
-
-// Vercel 404 Fix: Manually pass /socket.io requests to the Socket.io engine
-app.all(/\/socket.io.*/, (req, res) => {
-  io.engine.handleRequest(req, res);
+  cors: { origin: '*' }
 });
 
 // Basic MongoDB connection
@@ -44,10 +33,6 @@ wsHandler(io);
 app.get('/health', (req, res) => res.send({ status: 'ok' }));
 
 const PORT = process.env.PORT || 5000;
-if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
-  server.listen(PORT, '0.0.0.0', () => {
-    console.log(`Node Backend running on all interfaces on port ${PORT}`);
-  });
-}
-
-module.exports = app;
+server.listen(PORT, '0.0.0.0', () => {
+  console.log(`Node Backend running on all interfaces on port ${PORT}`);
+});

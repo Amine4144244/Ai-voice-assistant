@@ -24,13 +24,10 @@ export function useVoiceSession(serverUrl) {
     if (socketRef.current) return; // Already connected
 
     const socket = io(serverUrl, {
-      transports: ['polling'],
+      transports: ['websocket'],
       reconnection: true,
       reconnectionAttempts: 10,
-      timeout: 10000,
-      extraHeaders: {
-        "x-socket-polling": "true"
-      }
+      timeout: 10000
     });
     socketRef.current = socket;
 
